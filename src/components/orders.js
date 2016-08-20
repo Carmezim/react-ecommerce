@@ -3,6 +3,7 @@ import PageHeader from './page_header';
 import OrdersTable from './orders/OrdersTable';
 import { toTitleCase } from '../lib/formatters';
 import OrdersStore from '../stores/orders_store';
+import OrdersActions from '../actions/orders_actions';
 
 const STATUSES = ['all', 'open', 'shipped'];
 
@@ -18,6 +19,7 @@ class Orders extends React.Component {
 	
 	componentDidMount() {
 		OrdersStore.listen(this.onChange);
+		OrdersActions.fetchOrders();
 	}	
 
 	componentWillUnmount() {

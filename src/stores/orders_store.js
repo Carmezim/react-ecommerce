@@ -6,12 +6,17 @@ class OrdersStore {
 		this.orders = [];
 
 		this.bindListeners({
-			handleUpdateOrders: OrdersActions.UPDATE_ORDERS
+			handleUpdateOrders: OrdersActions.UPDATE_ORDERS,
+			handleFetchOrders: OrdersActions.FETCH_ORDERS
 		});
 	}
 
 	handleUpdateOrders(orders) {
 		this.orders = orders;
+	}
+
+	handleFetchOrders(orders) {
+		this.orders = [];
 	}	
 }
 
