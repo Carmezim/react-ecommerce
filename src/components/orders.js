@@ -1,6 +1,6 @@
 import React from 'react';
 import PageHeader from './page_header';
-import OrdersTable from './orders/OrdersTable';
+import OrdersTable from './orders/orders_table';
 import { toTitleCase } from '../lib/formatters';
 import OrdersStore from '../stores/orders_store';
 import OrdersActions from '../actions/orders_actions';
@@ -14,7 +14,6 @@ class Orders extends React.Component {
 		this.onChange = this.onChange.bind(this);
 
 		this.state = OrdersStore.getState();
-    this.state = { selectedStatus = 'all' };
 	}
 	
 	componentDidMount() {
@@ -61,9 +60,8 @@ class Orders extends React.Component {
   }
 
   handleStatusClick(status) {
-    this.setState({ selectedStatus: status });
+    OrdersActions.updatSelectedStatus(status);
   }
 }
-
 
 export default Orders;
