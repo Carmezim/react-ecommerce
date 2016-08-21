@@ -2,15 +2,22 @@ import alt from '../alt';
 import OrdersFetcher from '../utils/orders_fetcher';
 
 class OrdersActions {
-	updateOreder(orders) {
+	updateOrders(orders) {
 		this.dispatch(orders);
 	}
 
+	updateSelectedStatus(status) {
+		this.dispatch(status);
+	}
+
+	updateAmountFilter(amount) {
+		this.dispatch(amount);
+	}
+
 	fetchOrders() {
-		this.dispatch([]);
 		OrdersFetcher.fetch()
-			.then(this.action.updateOrders.bind(this));
-	}	
+			.then(this.actions.updateOrders.bind(this));
+	}
 }
 
 export default alt.createActions(OrdersActions);

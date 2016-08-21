@@ -1,7 +1,7 @@
 /* @flow */
 import numeral from 'numeral';
 import moment from 'moment';
-import Moment = moment().constructor;
+const Moment = moment().constructor;
 
 const toMoney = function (num: number) : string {
   return numeral(num).format('$0,0.00');

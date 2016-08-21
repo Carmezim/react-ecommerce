@@ -5,17 +5,23 @@ class OrderRow extends React.Component {
   render() {
     const { order } = this.props;
     const products = orders.products.map((p) => p.name).join(', ');
+
     return (
       <tr className='order'>
-        <td>{order.reference}</td>
-        <td>{order.customer}</td>
-        <td className='sorted-by'>{toDateTime(order.orderedAt)}</td>
-        <td>Product(s)</td>
-        <td className='amount'>{toMoney(order.amount)}</td>
-        <td className='status'>{toTitleCase(order.paymentStatus)}</td>
-        <td className='status'>{toTitleCase(order.orderStatus)}</td>
-      </tr>
+        <td>{order.get('reference')}</td>
+        <td>{order.get('customer')}</td>
+        <td className='sorted-by'>{toDateTime(order.get('orderedAt'))}</td>
+        <td>{products}</td>
+        <td className='amount'>{toMoney(order.get('amount'))}</td>
+        <td className='status'>{toTitleCase(order.get('paymentStatus'))}</td>
+        <td className='status'>{toTitleCase(order.get('orderStatus'))}</td>
+       </tr>
     );
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+  return nextProps.order !== this.props.order;
   }
 }
 
