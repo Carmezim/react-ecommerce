@@ -7,44 +7,44 @@ import OrdersActions from '../actions/orders_actions';
 
 const STATUSES = ['all', 'open', 'shipped'];
 
-class TopCostumer extends React.Component {
+class TopCustomer extends React.Component {
   render() {
     let { topOrder } = this.props;
     if (!topOrder) return null;
 
-    topOrder = topOrder.set('costumer', topOrder.get('costumer').split(' ')[0]);
+    topOrder = topOrder.set('customer', topOrder.get('customer').split(' ')[0]);
 
-    return <div>Top costumer: {topOrder.costumer}</div>;
+    return <div>Top customer: {topOrder.get('customer')}</div>;
   }
 }
 
 class Orders extends React.Component {
   constructor(props) {
-		super(props);
+    super(props);
 
-		this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
 
-		this.state = OrdersStore.getState();
-	}
-	
-	componentDidMount() {
-		OrdersStore.listen(this.onChange);
-		OrdersActions.fetchOrders();
-	}	
+    this.state = OrdersStore.getState();
+  }
 
-	componentWillUnmount() {
-		OrdersStore.unlisten(this.onChange);
-	}
+  componentDidMount() {
+    OrdersStore.listen(this.onChange);
+    OrdersActions.fetchOrders();
+  }
 
-	onChange(state) {
-		this.setState(state);
-	}	
+  componentWillUnmount() {
+    OrdersStore.unlisten(this.onChange);
+  }
+
+  onChange(state) {
+    this.setState(state);
+  }
 
   render() {
     const { selectedStatus, amountFilter } = this.state;
 
     const statuses = STATUSES.map((status, i) => {
-      const className = status === selectedStatus ? 'selected status' : 'status' ;
+      const className = status === selectedStatus ? 'selected status' : 'status';
       return (
         <a key={i} className={className} onClick={this.handleStatusClick.bind(this, status)}>
           {toTitleCase(status)}
@@ -55,7 +55,7 @@ class Orders extends React.Component {
     let orders = this.state.orders;
     if (selectedStatus !== 'all') {
       orders = orders.filter((order) => {
-        return order.orderStatus === selectedStatus;
+        return order.get('orderStatus') === selectedStatus;
       });
     }
 
@@ -89,11 +89,11 @@ class Orders extends React.Component {
   }
 
   handleAmountFilterChange(ev) {
-    OrdersAction.updateAmountFilter(ev.currentTarget.value || null);
+    OrdersActions.updateAmountFilter(ev.currentTarget.value || null);
   }
 
   handleStatusClick(status) {
-    OrdersActions.updatSelectedStatus(status);
+    OrdersActions.updateSelectedStatus(status);
   }
 }
 

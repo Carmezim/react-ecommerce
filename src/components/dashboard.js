@@ -11,12 +11,8 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    DashboadStore.listen(this.onChange);
+    DashboardStore.listen(this.onChange);
     DashboardActions.fetchSalesStats();
-  }
-
-  componentWillMount() {
-    DashboardStore.unlisten(this.onChange);
   }
 
   componentWillUnmount() {
@@ -29,7 +25,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className='dashboad'>
+      <div className='dashboard'>
         <h1>Dashboard</h1>
         <SalesChart salesStats={this.state.salesStats}/>
       </div>

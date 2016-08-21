@@ -1,13 +1,13 @@
 var HtmlWebpackPlugin = require("html-webpack-plugin")
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-	template: __dirname + "/views/index.ejs",
-	filename: "index.ejs",
+	template: __dirname + "/views/index.html",
+	filename: "index.html",
 	inject: "body"
 });
 
 module.exports = {
 	devtool: 'eval-source-map',
-	entry: __dirname + "/views/index.ejs",
+	entry: __dirname + "/src/index.js",
 	output: {
 				path: __dirname + "/public",
 				filename: "bundle.js"

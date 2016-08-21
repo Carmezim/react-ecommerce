@@ -1,5 +1,5 @@
 import alt from '../alt';
-import immutableUtil from 'alt/utils/ImmutableUtil';
+import immutableUtil from 'alt-utils/lib/ImmutableUtil';
 import Immutable from 'immutable';
 import DashboardActions from '../actions/dashboard_actions';
 
@@ -9,10 +9,9 @@ class DashboardStore {
       salesStats: []
     });
 
-
     this.bindListeners({
       handleUpdateSalesStats: DashboardActions.UPDATE_SALES_STATS,
-      handleFetchSalesStat: DashboardActions.FETCH_SALES_STATS;
+      handleFetchSalesStats: DashboardActions.FETCH_SALES_STATS
     });
   }
 
