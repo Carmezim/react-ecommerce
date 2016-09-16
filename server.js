@@ -12,7 +12,7 @@ let app = express();
 app.use(express.static('public'));
 
 app.get('/orders.json', (req, res) => {
-	res.sendFile(__dirname + '/data/orders.json');
+  res.sendFile(__dirname + '/data/orders.json');
 });
 
 app.get('/sales_stats.json', (req, res) => {
@@ -46,8 +46,8 @@ app.use((req, res, next) => {
 });
 
 const server = app.listen(8000, () => {
-	const host = server.address().address;
-	const port = server.address().port;
+  const host = server.address().address;
+  const port = server.address().port;
 
-	console.log('Storekeeper app listening at http://%s%s', host, port);
+  console.log('Storekeeper app listening at http://%s%s', host, port);
 });
